@@ -18,10 +18,10 @@
     <context:property-placeholder location="classpath:persistence-mysql.properties" />
     
     <context:annotation-config/>	
-    <context:component-scan base-package="com.bap.erp.dao;
-                                          com.bap.erp.servicios;
-                                          com.bap.erp.ws;
-                                          com.bap.erp.managers" />
+    <context:component-scan base-package="com.entrepreneur.shuffle.dao;                                          
+                                          com.entrepreneur.shuffle.servicios;
+                                          com.entrepreneur.shuffle.ws;
+                                          com.entrepreneur.shuffle.managers" />
     <tx:annotation-driven transaction-manager="transactionManager"/>
     
     <bean id="wsReferences" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
@@ -31,14 +31,14 @@
     <!--***********************PERSISTENCE****************************-->
     <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="com.bap.erp.modelo" />
+        <property name="packagesToScan" value="com.entrepreneur.shuffle.modelo" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </property>
         <property name="jpaProperties">
             <props>
                 <!--*** HABILITAR / DESHABILITAR PARA RECREAR LA BD **-->
-                <!--<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>-->
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
             </props>
         </property>
@@ -61,6 +61,6 @@
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
     
     <!-- Aspect -->
-    <bean id="authenticationAspect" class="com.bap.erp.aspects.AuthenticationAspect" />
+    <!--<bean id="authenticationAspect" class="com.bap.erp.aspects.AuthenticationAspect" />-->
     
 </beans>

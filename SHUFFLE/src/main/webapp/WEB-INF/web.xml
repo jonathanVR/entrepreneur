@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-    <display-name>ERP_WS</display-name>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <display-name>SHUFFLE_WS</display-name>
     <context-param>
         <param-name>VERSION</param-name>
         <param-value>1.0</param-value>
@@ -15,14 +17,14 @@
             /WEB-INF/applicationContext.xml
         </param-value>
     </context-param>
-    <filter>
+    <!--    <filter>
         <filter-name>CORSFilter</filter-name>
         <filter-class>com.bap.erp.commons.filters.CORSFilter</filter-class>
-    </filter>
-    <filter-mapping>
+    </filter>-->
+<!--    <filter-mapping>
         <filter-name>CORSFilter</filter-name>
-        <url-pattern>/erpws/*</url-pattern>
-    </filter-mapping>
+        <url-pattern>/shufflews/*</url-pattern>
+    </filter-mapping>-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -43,13 +45,13 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <servlet>
+    <!--    <servlet>
         <servlet-name>JasperReportsBrowserDemoServlet</servlet-name>
         <servlet-class>com.bap.erp.managers.JasperReportsBrowserDemoServlet</servlet-class>
-    </servlet>
+    </servlet>-->
     <servlet-mapping>
         <servlet-name>jersey-serlvet</servlet-name>
-        <url-pattern>/erpws/*</url-pattern>
+        <url-pattern>/shufflews/*</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>JerseyJaxrsConfig</servlet-name>
@@ -60,22 +62,23 @@
         </init-param>
         <init-param>
             <param-name>swagger.api.basepath</param-name>
-            <param-value>http://192.168.1.235:8084/ERP_WS-1.1/erpws</param-value>
+            <!--<param-value>http://192.168.1.235:8084/ERP_WS-1.1/erpws</param-value>-->
             <!--<param-value>http://172.16.11.173:8084/ERP_WS-1.1/erpws</param-value>-->
-            <!--<param-value>http://localhost:8084/ERP_WS-1.1/erpws</param-value>-->
+            <!--<param-value>http://localhost:8084/SHUFFLE_WS-1.1/shufflews</param-value>-->
+            <param-value>http://localhost:8084/shuffle/shufflews</param-value>
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>
-    <servlet>
+    <!--    <servlet>
         <servlet-name>ImageServlet</servlet-name>
         <servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
+    </servlet>-->
+    <!--    <servlet-mapping>
         <servlet-name>ImageServlet</servlet-name>
         <url-pattern>/image</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
+    </servlet-mapping>-->
+    <!--    <servlet-mapping>
         <servlet-name>JasperReportsBrowserDemoServlet</servlet-name>
         <url-pattern>/erpws/pdf</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 </web-app>
