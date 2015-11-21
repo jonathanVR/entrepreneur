@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+          http://www.springframework.org/schema/aop 
+          http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+          http://www.springframework.org/schema/context 
+          http://www.springframework.org/schema/context/spring-context-4.0.xsd
+          http://www.springframework.org/schema/tx 
+          http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+    
+    <!--Bean para el uso aspectos-->
+    <!--<aop:aspectj-autoproxy />-->
+    
+    <!--Bean para el uso del contexto del gestor MySql referencia al propertie creado para la persistencia-->
+    <!--<context:property-placeholder location="classpath:persistence-mysql.properties" />-->
+    
+    <!--SQL SERVER-->
+    <context:property-placeholder location="classpath:persistence-sqlserver.properties" />
+    
+    <context:annotation-config/>	
+    <context:component-scan base-package="com.entrepreneur.startupweekend.dao;                                          
+                                          com.entrepreneur.startupweekend.servicios;
+                                          com.entrepreneur.startupweekend.ws;
+                                          com.entrepreneur.startupweekend.managers" />    
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    <!--bean para referenciarte a un servicio web diferente-->
+    <!--    <bean id="wsReferences" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:ws-references.properties"/>
+    </bean>-->
+
+    <!--***********************PERSISTENCE****************************-->
+    <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="com.entrepreneur.startupweekend.model" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <!--*** HABILITAR / DESHABILITAR PARA RECREAR LA BD  EN MYSQL**-->
+                <!--                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>-->
+                
+                <!--*** HABILITAR / DESHABILITAR PARA RECREAR LA BD EN SQLSERVER**-->
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!--variables para la conexion a la base de datos-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.user}" />
+        <property name="password" value="${jdbc.pass}" />
+    </bean>
+
+    
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="myEmf" />
+    </bean>   
+
+    <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />   
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+    
+</beans>
