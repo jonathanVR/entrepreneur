@@ -11,7 +11,7 @@ public interface IGenericDao{
 
     Serializable findOne(Class clazz,final String id);
 
-   List<Serializable> findAll(Class clazz);
+   List findAll(Class clazz);
  
    void create(final Serializable entity);
  

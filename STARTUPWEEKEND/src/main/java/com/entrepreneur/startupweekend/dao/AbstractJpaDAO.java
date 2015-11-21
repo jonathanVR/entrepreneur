@@ -29,8 +29,8 @@ public abstract class AbstractJpaDAO {
     }
 
     @SuppressWarnings("unchecked")
-    public List<Serializable> findAll(Class clazz) {
-        return entityManager.createQuery("from " + clazz.getName()).getResultList();
+    public List findAll(Class clazz) {
+        return entityManager.createQuery("from " + clazz.getName(),clazz).getResultList();
     }
 
     @Transactional

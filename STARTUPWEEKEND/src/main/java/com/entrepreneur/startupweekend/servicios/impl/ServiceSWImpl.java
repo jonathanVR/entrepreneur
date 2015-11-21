@@ -5,6 +5,7 @@ import com.entrepreneur.startupweekend.modelo.Posicion;
 import com.entrepreneur.startupweekend.modelo.Usuario;
 import com.entrepreneur.startupweekend.modelo.Zona;
 import com.entrepreneur.startupweekend.servicios.ServiceSW;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +64,12 @@ public class ServiceSWImpl implements ServiceSW {
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    @Override
+    public List<Zona> getZones() throws Exception {
+         List<Zona> zonas=dao.findAll(Zona.class);
+         return zonas;
     }
     
     

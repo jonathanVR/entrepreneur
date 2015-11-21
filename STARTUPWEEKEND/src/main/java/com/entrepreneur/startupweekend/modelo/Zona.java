@@ -1,11 +1,15 @@
 package com.entrepreneur.startupweekend.modelo;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +25,11 @@ public class Zona implements Serializable {
 
     @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
+    
+    @OneToMany(mappedBy = "zona")
+    //@JoinColumn(name = "puntos", referencedColumnName = "idZonaPunto", nullable = true, foreignKey = @ForeignKey(name = "none"))
+    private List<ZonaPunto> puntos;
+    
     
     @Override
     public String toString() {
@@ -41,5 +50,19 @@ public class Zona implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /**
+     * @return the puntos
+     */
+    public List<ZonaPunto> getPuntos() {
+        return puntos;
+    }
+
+    /**
+     * @param puntos the puntos to set
+     */
+    public void setPuntos(List<ZonaPunto> puntos) {
+        this.puntos = puntos;
     }
 }

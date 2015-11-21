@@ -1,5 +1,6 @@
 package com.entrepreneur.startupweekend.ws;
 
+import com.entrepreneur.startupweekend.modelo.Feature;
 import com.entrepreneur.startupweekend.modelo.GpsMessage;
 import com.entrepreneur.startupweekend.modelo.Posicion;
 import com.entrepreneur.startupweekend.modelo.UserPreferences;
@@ -10,6 +11,10 @@ import com.entrepreneur.startupweekend.servicios.ServiceSW;
 import com.pusher.rest.Pusher;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -109,16 +114,25 @@ public class PosicionWS {
     public Response getZones(@PathParam("idUsuario")String idUsuario, @PathParam("idZone") String zone) {
         try {
             
-            //Get User Preferences
-            UserPreferences  userPreferences;
-                    
-            //Get Customers in Zone
-            //List<Cliente> customers=getCustomersInZone(idZone);
+            List<Zona> zonas= serviceSW.getZones();
             
-            //Match Preferences vs Customers
+            List<Feature> features=new ArrayList<Feature>();
             
+            Feature feature;
+            Map<String,Object> values;
             
-            //Send Notifications
+            for (Zona zona : zonas) {
+               feature=new Feature();
+               
+               values=new HashMap<String, Object>();
+               values.put("id", zona.getNombre());
+               feature.setProperties(values);
+               
+               values=new HashMap<String, Object>();
+               values.put("type","Polygon");
+               values.put("coordinates", zona.getPuntos());
+               feature.setGeometry(values);
+            }
             
             return Response.status(200).entity(true).build();
         } catch (Exception e) {
