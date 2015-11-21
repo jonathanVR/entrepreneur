@@ -4,9 +4,9 @@ import com.entrepreneur.startupweekend.modelo.Zona;
 import com.entrepreneur.startupweekend.servicios.ServiceSW;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -24,15 +24,12 @@ public class ZonaWS {
     public ZonaWS() {
     }
 
-    @POST
-    @Path("/post")
+    @PUT
+    @Path("/put")
     @ApiOperation(value = "ws para insertar la zona")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response postZona(@FormParam("nombreZona")String nombreZona, @FormParam("jsonZona")String jsonZona) {
-        try {  
-            Zona zona = new Zona();
-            zona.setNombre(nombreZona);
-            zona.setJsonZona(jsonZona);
+    @Consumes(MediaType.APPLICATION_JSON)    
+    public Response postZona(@ApiParam("zona")Zona zona) {
+        try {                          
             serviceSW.persistZona(zona);
             return Response.status(200).entity(zona).build();
         } catch (Exception e) {
