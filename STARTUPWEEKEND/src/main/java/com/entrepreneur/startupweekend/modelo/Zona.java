@@ -22,7 +22,6 @@ public class Zona implements Serializable {
     @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
     
-
     @Override
     public String toString() {
         return "Zona[ idZona=" + idZona + " ]";
