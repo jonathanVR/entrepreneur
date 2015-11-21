@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Scope( BeanDefinition.SCOPE_PROTOTYPE )
-public class GenericJpaDao<T extends Serializable> extends AbstractJpaDAO< T > implements IGenericDao< T > {
+public class GenericJpaDao extends AbstractJpaDAO implements IGenericDao {
+
     
+
 }

@@ -55,8 +55,8 @@
         </init-param>
         <init-param>
             <param-name>swagger.api.basepath</param-name>
-            <!--<param-value>http://localhost:8084/startupweekend/startupweekendws</param-value>-->
-            <param-value>http://192.168.1.131:8084/startupweekend/startupweekendws</param-value>
+            <param-value>http://localhost:8084/startupweekend/startupweekendws</param-value>
+            <!--<param-value>http://192.168.1.131:8084/startupweekend/startupweekendws</param-value>-->
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>

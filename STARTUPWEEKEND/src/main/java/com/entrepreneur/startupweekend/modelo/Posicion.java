@@ -1,8 +1,7 @@
 package com.entrepreneur.startupweekend.modelo;
 
-
-
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,26 +10,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "posicion")
 public class Posicion implements Serializable {
 
-    private static final long serialVersionUID = STARTUPWEEKEND.serialVersionIdShuffle;    
-    
+    private static final long serialVersionUID = STARTUPWEEKEND.serialVersionIdShuffle;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_posicion", nullable = false)
     private Long idPosicion;
-        
-    @Column(name = "id_cliente", length = 50, nullable = false)
-    private Long idCliente;                
-       
-    @Column(name = "latitud", length = 50, nullable = false)
-    private Double latitud;        
-    
-    @Column(name = "longitud", length = 50, nullable = false)
-    private Double longitud;        
- 
-        
+
+    @Column(name = "id_usuario", length = 50, nullable = false)
+    private String idUsuario;
+
+    @Column(name = "latitud")
+    private Long latitud;
+
+    @Column(name = "longitud")
+    private Long longitud;
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -53,10 +51,6 @@ public class Posicion implements Serializable {
     @Override
     public String toString() {
         return "Posicion[ idPosicion=" + idPosicion + " ]";
-    }      
-
-    public Long getIdCliente() {
-        return idCliente;
     }
 
     public Long getIdPosicion() {
@@ -67,20 +61,31 @@ public class Posicion implements Serializable {
         this.idPosicion = idPosicion;
     }
 
-    public Double getLatitud() {
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Long getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(Double latitud) {
+    public void setLatitud(Long latitud) {
         this.latitud = latitud;
     }
 
-    public Double getLongitud() {
+    public Long getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(Double longitud) {
+    public void setLongitud(Long longitud) {
         this.longitud = longitud;
     }
-        
+
+  
+    
+
 }
