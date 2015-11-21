@@ -1,13 +1,14 @@
 package com.entrepreneur.startupweekend.ws;
 
+import com.entrepreneur.startupweekend.modelo.Cliente;
 import com.entrepreneur.startupweekend.modelo.GpsMessage;
-import com.entrepreneur.startupweekend.modelo.Usuario;
+import com.entrepreneur.startupweekend.modelo.UserPreferences;
 import com.pusher.rest.Pusher;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
+import java.util.List;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -39,6 +40,34 @@ public class PosicionWS {
             return Response.status(500).entity(e).build();
         }
     }
+    
+    @POST
+    @Path("/inZone/{idUsuario}/{zone}")
+    @ApiOperation(value = "ws para almacenar la posicion")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response inZone(@PathParam("idUsuario")String idUsuario, @PathParam("idZone") Long idZone) {
+        try {
+            
+            //Get User Preferences
+            UserPreferences  ;
+                    
+            //Get Customers in Zone
+            List<Cliente> customers=getCustomersInZone(idZone);
+            
+            //Match Preferences vs Customers
+            
+            
+            //Send Notifications
+            
+            return Response.status(200).entity(true).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(500).entity(e).build();
+        }
+    }
+    
+    
+    
     
 
 }
