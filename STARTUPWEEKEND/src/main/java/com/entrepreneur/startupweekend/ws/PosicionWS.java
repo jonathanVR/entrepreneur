@@ -28,7 +28,7 @@ public class PosicionWS {
     @Path("/putPosicion/{claveCliente}/{latitud}/{longitud}")
     @ApiOperation(value = "ws para almacenar la posicion")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response putUsuario(@PathParam("claveCliente")String claveCliente) {
+    public Response putPosicion(@PathParam("claveCliente")String claveCliente) {
         try {
             Pusher pusher = new Pusher("154195", "eb77ec29726941e8ea60", "3c719e822f3327203963");//apiId, apiKey, apiSecret
             GpsMessage gpsMessage = new GpsMessage("CEL-VLADY", 0L, 0L);
@@ -49,10 +49,10 @@ public class PosicionWS {
         try {
             
             //Get User Preferences
-            UserPreferences  ;
+            UserPreferences  userPreferences;
                     
             //Get Customers in Zone
-            List<Cliente> customers=getCustomersInZone(idZone);
+            //List<Cliente> customers=getCustomersInZone(idZone);
             
             //Match Preferences vs Customers
             
