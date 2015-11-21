@@ -28,7 +28,7 @@ public class ZonaWS {
     @Path("/put")
     @ApiOperation(value = "ws para insertar la zona")
     @Consumes(MediaType.APPLICATION_JSON)    
-    public Response postZona(@ApiParam("zona")Zona zona) {
+    public Response putZona(@ApiParam("zona")Zona zona) {
         try {                          
             serviceSW.persistZona(zona);
             return Response.status(200).entity(zona).build();

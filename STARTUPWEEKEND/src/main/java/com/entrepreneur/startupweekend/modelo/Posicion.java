@@ -1,7 +1,6 @@
 package com.entrepreneur.startupweekend.modelo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,14 +19,14 @@ public class Posicion implements Serializable {
     @Column(name = "id_posicion", nullable = false)
     private Long idPosicion;
 
-    @Column(name = "id_usuario", length = 50, nullable = false)
+    @Column(name = "id_usuario")
     private String idUsuario;
 
     @Column(name = "latitud")
-    private Long latitud;
+    private Double latitud;
 
     @Column(name = "longitud")
-    private Long longitud;
+    private Double longitud;
 
     @Override
     public int hashCode() {
@@ -69,23 +68,21 @@ public class Posicion implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Long getLatitud() {
+    public Double getLatitud() {
         return latitud;
     }
 
-    public void setLatitud(Long latitud) {
+    public void setLatitud(Double latitud) {
         this.latitud = latitud;
     }
 
-    public Long getLongitud() {
+    public Double getLongitud() {
         return longitud;
     }
 
-    public void setLongitud(Long longitud) {
+    public void setLongitud(Double longitud) {
         this.longitud = longitud;
     }
 
-  
     
-
 }
