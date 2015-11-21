@@ -1,6 +1,7 @@
 package com.entrepreneur.startupweekend.modelo;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class GpsMessage implements Serializable {
 
@@ -8,6 +9,10 @@ public class GpsMessage implements Serializable {
     private Long latitude;
     private Long longitude;
 
+    public GpsMessage() {
+        
+    }
+    
     public GpsMessage(String serial, Long latitude, Long longitude) {
         this.serial = serial;
         this.latitude = latitude;
@@ -37,6 +42,7 @@ public class GpsMessage implements Serializable {
     public void setLongitude(Long longitude) {
         this.longitude = longitude;
     }
+
     
     
 

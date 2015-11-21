@@ -38,7 +38,7 @@
     <!--***********************PERSISTENCE****************************-->
     <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="packagesToScan" value="com.entrepreneur.startupweekend.model" />
+        <property name="packagesToScan" value="com.entrepreneur.startupweekend.modelo" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
         </property>

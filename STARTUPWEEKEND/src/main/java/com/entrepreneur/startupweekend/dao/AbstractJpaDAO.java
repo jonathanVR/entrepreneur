@@ -8,68 +8,59 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-public abstract class AbstractJpaDAO<T extends Serializable> {
+public abstract class AbstractJpaDAO {
 
-    private Class<T> clazz;
+   // private Class clazz;
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public final void setClazz(final Class<T> clazzToSet) {
-        this.clazz = clazzToSet;
-    }
+//    public final void setClazz(final Class<T> clazzToSet) {
+//        this.clazz = clazzToSet;
+//    }
 
     @Transactional
-    public T findOne(final Long id) {
-        return entityManager.find(clazz, id);
+    public Serializable findOne(Class clazz,final Long id) {
+        return (Serializable)entityManager.find(clazz, id);
     }
 
-    public T findOne(final String id) {
-        return entityManager.find(clazz, id);
+    public Serializable findOne(Class clazz,final String id) {
+        return (Serializable)entityManager.find(clazz, id);
     }
 
     @SuppressWarnings("unchecked")
-    public List<T> findAll() {
+    public List<Serializable> findAll(Class clazz) {
         return entityManager.createQuery("from " + clazz.getName()).getResultList();
     }
 
     @Transactional
-    public void create(final T entity) {
+    public void create(final Serializable entity) {
         System.out.println("Persisting:::: " + entity);
         entityManager.persist(entity);
     }
 
     @Transactional
-    public T update(final T entity) {
+    public Serializable update(final Serializable entity) {
         return entityManager.merge(entity);
     }
 
     @Transactional
-    public void delete(final T entity) {
+    public void delete(final Serializable entity) {
         entityManager.remove(entity);
     }
 
     @Transactional
-    public void deleteById(final long entityId) {
-        final T entity = findOne(entityId);
+    public void deleteById(Class clazz, final long entityId) {
+        final Serializable entity = findOne(clazz,entityId);
         delete(entity);
     }
 
     @Transactional
-    public List<T> find(String consulta){
+    public List<Serializable> find(String consulta){
         System.out.println("Ejecutando Query:::: "+consulta);
         Query query = entityManager.createQuery(consulta);
-        List<T> resultList = query.getResultList();
+        List<Serializable> resultList = query.getResultList();
         return resultList;
     }
 
-    @Transactional
-    public Object findOne(Class clazz, String id) {
-        return entityManager.find(clazz, id);
-    }
-    
-    @Transactional
-    public Object findOne(Class clazz, Long id) {
-        return entityManager.find(clazz, id);
-    }
 }

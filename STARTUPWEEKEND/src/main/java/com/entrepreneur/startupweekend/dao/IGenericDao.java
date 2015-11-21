@@ -3,24 +3,24 @@ package com.entrepreneur.startupweekend.dao;
 import java.io.Serializable;
 import java.util.List;
 
-public interface IGenericDao<T extends Serializable> {
+public interface IGenericDao{
     
-    public void setClazz(final Class<T> clazzToSet);
+   // public void setClazz(final Class<T> clazzToSet);
 
-    T findOne(final Long id);
+    Serializable findOne(Class clazz, final Long id);
 
-    T findOne(final String id);
+    Serializable findOne(Class clazz,final String id);
 
-   List<T> findAll();
+   List<Serializable> findAll(Class clazz);
  
-   void create(final T entity);
+   void create(final Serializable entity);
  
-   T update(final T entity);
+   Serializable update(final Serializable entity);
  
-   void delete(final T entity);
+   void delete(final Serializable entity);
  
-   void deleteById(final long entityId);
+   void deleteById(Class clazz,final long entityId);
    
-   Object findOne(Class clazz, String id);
+  
     
 }

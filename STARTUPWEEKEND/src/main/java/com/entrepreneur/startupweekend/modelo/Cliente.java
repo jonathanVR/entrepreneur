@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "cliente")
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = STARTUPWEEKEND.serialVersionIdShuffle;    
