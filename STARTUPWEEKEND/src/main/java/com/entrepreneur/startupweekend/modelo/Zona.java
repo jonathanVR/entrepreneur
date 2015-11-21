@@ -1,7 +1,6 @@
 package com.entrepreneur.startupweekend.modelo;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,29 +22,6 @@ public class Zona implements Serializable {
     @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
     
-    @Column(name = "jsonZona", length = 50, nullable = false)
-    private String jsonZona;
-
-    
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idZona != null ? idZona.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Zona)) {
-            return false;
-        }
-        Zona other = (Zona) object;
-        if ((this.idZona == null && other.idZona != null) || (this.idZona != null && !this.idZona.equals(other.idZona))) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {
@@ -67,14 +43,4 @@ public class Zona implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getJsonZona() {
-        return jsonZona;
-    }
-
-    public void setJsonZona(String jsonZona) {
-        this.jsonZona = jsonZona;
-    }
-    
-    
 }

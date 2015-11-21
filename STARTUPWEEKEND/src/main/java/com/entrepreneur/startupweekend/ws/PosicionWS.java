@@ -1,16 +1,16 @@
 package com.entrepreneur.startupweekend.ws;
 
-import com.entrepreneur.startupweekend.modelo.Cliente;
 import com.entrepreneur.startupweekend.modelo.GpsMessage;
 import com.entrepreneur.startupweekend.modelo.Posicion;
+import com.entrepreneur.startupweekend.modelo.UserPreferences;
 import com.entrepreneur.startupweekend.servicios.ServiceSW;
 import com.pusher.rest.Pusher;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
-import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Date;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
@@ -30,10 +30,10 @@ public class PosicionWS {
     }
    
     @POST
-    @Path("/putPosicion")
+    @Path("/mobileGps")
     @ApiOperation(value = "ws para almacenar la posicion")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response putPosicion(GpsMessage gpsMessage) {
+    public Response mobileGps(GpsMessage gpsMessage) {
         try {
             Posicion posicion = new Posicion();
             posicion.setIdUsuario(gpsMessage.getSerial());
@@ -41,10 +41,9 @@ public class PosicionWS {
             posicion.setLongitud(gpsMessage.getLongitude());
             usuarioService.persistPosicion(posicion);
             
-//            Pusher pusher = new Pusher("154195", "eb77ec29726941e8ea60", "3c719e822f3327203963");//apiId, apiKey, apiSecret
-           // GpsMessage gpsMessage = new GpsMessage(idUsuario, latitud, longitud);
-            //pusher.trigger("channel-hackaton", "gps", Collections.singletonMap("message", "Aqui desde la casa del Henry "+new Date()));
-//            pusher.trigger("hackaton", "gps", gpsMessage);
+            Pusher pusher = new Pusher("154195", "eb77ec29726941e8ea60", "3c719e822f3327203963");//apiId, apiKey, apiSecret
+            //GpsMessage gpsMessage = new GpsMessage(idUsuario, latitud, longitud);
+            pusher.trigger("mobileGps", "gps", gpsMessage);
             return Response.status(200).entity(true).build();
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,7 +55,7 @@ public class PosicionWS {
     @Path("/inZone/{idUsuario}/{zone}")
     @ApiOperation(value = "ws para almacenar la posicion")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response inZone(@PathParam("idUsuario")String idUsuario, @PathParam("idZone") Long idZone) {
+    public Response inZone(@PathParam("idUsuario")String idUsuario, @PathParam("idZone") String zone) {
         try {
             
             //Get User Preferences
