@@ -16,7 +16,7 @@ public class ZonaPunto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_zona", nullable = false)
+    @Column(name = "id_zona_punto", nullable = false)
     private Long idZonaPunto;
 
     @Column(name = "latitud")
