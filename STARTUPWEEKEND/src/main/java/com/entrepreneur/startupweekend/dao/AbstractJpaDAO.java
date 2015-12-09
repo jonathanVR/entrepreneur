@@ -56,9 +56,9 @@ public abstract class AbstractJpaDAO {
     }
 
     @Transactional
-    public List<Serializable> find(String consulta){
+    public List find(String consulta,Class clazz){
         System.out.println("Ejecutando Query:::: "+consulta);
-        Query query = entityManager.createQuery(consulta);
+        Query query = entityManager.createQuery(consulta,clazz);
         List<Serializable> resultList = query.getResultList();
         return resultList;
     }

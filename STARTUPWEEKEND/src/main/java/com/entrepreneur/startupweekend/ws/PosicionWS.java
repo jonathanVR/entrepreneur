@@ -49,7 +49,7 @@ public class PosicionWS {
             posicion.setLongitud(gpsMessage.getLongitude());
             serviceSW.persistPosicion(posicion);
             
-            Pusher pusher = new Pusher("154195", "eb77ec29726941e8ea60", "3c719e822f3327203963");//apiId, apiKey, apiSecret
+                Pusher pusher = new Pusher("154195", "eb77ec29726941e8ea60", "3c719e822f3327203963");//apiId, apiKey, apiSecret
             //GpsMessage gpsMessage = new GpsMessage(idUsuario, latitud, longitud);
             pusher.trigger("mobileGps", "gps", gpsMessage);
             return Response.status(200).entity(true).build();
@@ -111,15 +111,17 @@ public class PosicionWS {
     @Path("/getZones")
     @ApiOperation(value = "ws para almacenar la posicion")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getZones(@PathParam("idUsuario")String idUsuario, @PathParam("idZone") String zone) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response getZones() {
         try {
             
             List<Zona> zonas= serviceSW.getZones();
-            
+            System.out.println("ZOnas::: "+zonas);
             List<Feature> features=new ArrayList<Feature>();
             
             Feature feature;
             Map<String,Object> values;
+            Double[][] coordinates;
             
             for (Zona zona : zonas) {
                feature=new Feature();
@@ -130,11 +132,27 @@ public class PosicionWS {
                
                values=new HashMap<String, Object>();
                values.put("type","Polygon");
-               values.put("coordinates", zona.getPuntos());
+               
+               List<ZonaPunto> puntos=serviceSW.getZonaPuntoByZona(zona);
+               coordinates=new Double[puntos.size()][3];
+               int i=0;
+               for(ZonaPunto punto:puntos)
+               {    coordinates[i][0]=punto.getLongitud();
+                    coordinates[i][1]=punto.getLatitud();
+                    coordinates[i][2]=0d;
+                    i++;
+               }
+               values.put("coordinates", coordinates);
                feature.setGeometry(values);
+               
+               features.add(feature);
             }
             
-            return Response.status(200).entity(true).build();
+            Map<String, Object> zones=new HashMap<String,Object>();
+            zones.put("type", "FeatureCollection");
+            zones.put("features", features);
+            
+            return Response.status(200).entity(zones).build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(500).entity(e).build();

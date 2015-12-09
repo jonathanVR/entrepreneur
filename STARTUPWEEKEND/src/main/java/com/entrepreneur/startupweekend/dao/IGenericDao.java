@@ -21,6 +21,5 @@ public interface IGenericDao{
  
    void deleteById(Class clazz,final long entityId);
    
-  
-    
+   List find(String consulta,Class clazz);    
 }

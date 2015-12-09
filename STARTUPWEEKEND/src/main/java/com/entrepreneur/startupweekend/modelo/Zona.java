@@ -26,11 +26,6 @@ public class Zona implements Serializable {
     @Column(name = "nombre", length = 50, nullable = false)
     private String nombre;
     
-    @OneToMany(mappedBy = "zona")
-    //@JoinColumn(name = "puntos", referencedColumnName = "idZonaPunto", nullable = true, foreignKey = @ForeignKey(name = "none"))
-    private List<ZonaPunto> puntos;
-    
-    
     @Override
     public String toString() {
         return "Zona[ idZona=" + idZona + " ]";
@@ -52,17 +47,4 @@ public class Zona implements Serializable {
         this.nombre = nombre;
     }
 
-    /**
-     * @return the puntos
-     */
-    public List<ZonaPunto> getPuntos() {
-        return puntos;
-    }
-
-    /**
-     * @param puntos the puntos to set
-     */
-    public void setPuntos(List<ZonaPunto> puntos) {
-        this.puntos = puntos;
-    }
 }

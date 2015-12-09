@@ -55,11 +55,26 @@ public class ServiceSWImpl implements ServiceSW {
     public List<Zona> getZones() throws Exception {
          List<Zona> zonas=dao.findAll(Zona.class);
          return zonas;
+    }
+    
     public ZonaPunto persistZonaPunto(ZonaPunto zonaPunto) throws Exception {
         try {
             zonaPunto.setIdZonaPunto(null);
             dao.create(zonaPunto);
             return zonaPunto;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    @Override
+    public List<ZonaPunto> getZonaPuntoByZona(Zona zona) throws Exception {
+          try {
+            List<ZonaPunto> lista = dao.find(""
+                    + "select h "
+                    + "from ZonaPunto h "
+                    + "where h.zona.idZona="+zona.getIdZona(),ZonaPunto.class);
+            return lista;
         } catch (Exception e) {
             throw e;
         }

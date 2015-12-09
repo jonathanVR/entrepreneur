@@ -50,11 +50,11 @@
         </dependency>
         
         <!--Internal Dependencies-->
-        <!--        <dependency>
+        <dependency>
             <groupId>com.bap.erp</groupId>
             <artifactId>commons</artifactId>
             <version>0.1</version>
-        </dependency>-->
+        </dependency>
         
         <dependency>
             <groupId>com.sun.jersey</groupId>

@@ -3,9 +3,12 @@ package com.entrepreneur.startupweekend.modelo;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,8 +28,10 @@ public class ZonaPunto implements Serializable {
     @Column(name = "longitud")
     private Double longitud;
 
-    @Column(name = "id_zona")
-    private Long idZona;
+    
+    @ManyToOne()
+    @JoinColumn(name = "id_zona", referencedColumnName = "id_zona", nullable = true, foreignKey = @ForeignKey(name = "none"))
+    private Zona zona;
 
     @Override
     public int hashCode() {
@@ -76,13 +81,19 @@ public class ZonaPunto implements Serializable {
         this.longitud = longitud;
     }
 
-    public Long getIdZona() {
-        return idZona;
+    /**
+     * @return the zona
+     */
+    public Zona getZona() {
+        return zona;
     }
 
-    public void setIdZona(Long idZona) {
-        this.idZona = idZona;
+    /**
+     * @param zona the zona to set
+     */
+    public void setZona(Zona zona) {
+        this.zona = zona;
     }
-    
+
     
 }

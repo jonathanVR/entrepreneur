@@ -17,12 +17,20 @@
             /WEB-INF/applicationContext.xml
         </param-value>
     </context-param>
+    <filter>
+        <filter-name>CORSFilter</filter-name>
+        <filter-class>com.bap.erp.commons.filters.CORSFilter</filter-class>
+    </filter>    
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
     <listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
     </listener>
+    <filter-mapping>
+        <filter-name>CORSFilter</filter-name>
+        <url-pattern>/startupweekendws/*</url-pattern>
+    </filter-mapping>
     
     <servlet>
         <servlet-name>jersey-serlvet</servlet-name>
@@ -55,8 +63,8 @@
         </init-param>
         <init-param>
             <param-name>swagger.api.basepath</param-name>
-            <param-value>http://localhost:8084/startupweekend/startupweekendws</param-value>
-            <!--<param-value>http://192.168.1.131:8084/startupweekend/startupweekendws</param-value>-->
+<!--            <param-value>http://localhost:8084/STARTUPWEEKEND_WS-1.1/startupweekendws</param-value>-->
+            <param-value>http://ec2-54-148-7-144.us-west-2.compute.amazonaws.com:8080/STARTUPWEEKEND_WS-1.1/startupweekendws</param-value>            
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>
