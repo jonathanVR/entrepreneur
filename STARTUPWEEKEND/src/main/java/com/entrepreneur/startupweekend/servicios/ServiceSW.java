@@ -15,6 +15,7 @@ public interface ServiceSW {
     
     Zona persistZona(Zona zona)throws Exception;
     
+    ZonaPunto persistZonaPunto(ZonaPunto zonaPunto)throws Exception;
     List<Zona> getZones()throws Exception;
 
 }
