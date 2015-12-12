@@ -21,5 +21,7 @@ public interface ServiceSW {
     List<ZonaPunto> getZonaPuntoByZona(Zona zona)throws Exception;
     
     List<Zona> getZones()throws Exception;
+    
+    void enviarCorreoPrueba(String usuario, String zona);
 
 }

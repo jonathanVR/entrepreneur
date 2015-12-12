@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -159,9 +160,18 @@ public class PosicionWS {
         }
     }
     
+    @POST
+    @Path("/notInZone")
+    @ApiOperation(value = "ws for ")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response enviaCorreo(@FormParam("usuario") String usuario, @FormParam("zona") String zona) {
+        try {                                    
+            serviceSW.enviarCorreoPrueba(usuario, zona);
+            return Response.status(200).entity("OK").build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(500).entity(e).build();
+        }
+    }
     
-    
-    
-    
-
 }

@@ -368,6 +368,19 @@
             <version>0.9.3</version>
         </dependency>
         
+         <!--libreria para el envio de email-->         
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        
+        
         <!--Jasper Reports-->
         <!--        <dependency>
             <groupId>net.sf.jasperreports</groupId>
