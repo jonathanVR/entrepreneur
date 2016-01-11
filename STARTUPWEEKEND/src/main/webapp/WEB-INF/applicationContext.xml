@@ -72,8 +72,8 @@
     <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />   
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
     
-    <!--envio de correo electronico-->
-     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    <!--envio de correo electronico gmail-->
+<!--     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host">
             <value>smtp.gmail.com</value>
         </property>
@@ -88,6 +88,25 @@
                 <prop key="mail.smtp.auth">true</prop>
                 <prop key="mail.smtp.starttls.enable">true</prop>
                 <prop key="mail.smtp.socketFactory.port">587</prop>
+            </props>
+        </property> 
+    </bean>-->
+    <!--envio de correo electronico test-->
+     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host">
+            <value>mail.bap.com.bo</value>
+        </property>
+        <property name="username">
+            <value>test@bap.com.bo</value>
+        </property>
+        <property name="password">
+            <value>Entrepreneur1</value>
+        </property> 
+        <property name="javaMailProperties">
+            <props> 
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.socketFactory.port">26</prop>
             </props>
         </property> 
     </bean>

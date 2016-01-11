@@ -110,7 +110,7 @@ public class ServiceSWImpl implements ServiceSW {
             Map<String, Object> model = new HashMap<String, Object>();            
             model.put("userNameParam", usuario);
             model.put("variable", "Es otro valor");
-            model.put("emailAddress", "mail.testmyoffers@gmail.com");
+            model.put("emailAddress", "test@bap.com.bo");
             model.put("template", "mail_template_html.vm");
 //            model.put("template", "email-template.vm");
             String to = "jonathan.valdivia.r@gmail.com";
