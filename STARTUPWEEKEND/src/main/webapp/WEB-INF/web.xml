@@ -64,7 +64,7 @@
         <init-param>
             <param-name>swagger.api.basepath</param-name>
             <!--<param-value>http://localhost:8084/STARTUPWEEKEND_WS-1.1/startupweekendws</param-value>-->
-            <param-value>http://ec2-54-148-7-144.us-west-2.compute.amazonaws.com:8080/STARTUPWEEKEND_WS-1.1/startupweekendws</param-value>            
+            <param-value>http://ec2-52-24-29-233.us-west-2.compute.amazonaws.com:8084/STARTUPWEEKEND_WS-1.1/startupweekendws</param-value>            
         </init-param>
         <load-on-startup>2</load-on-startup>
     </servlet>
