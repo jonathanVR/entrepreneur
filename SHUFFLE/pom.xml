@@ -32,7 +32,7 @@
         <javassist-version>3.16.1-GA</javassist-version>
         <paranamer-version>2.5.2</paranamer-version>
         <scannotation-version>1.0.3</scannotation-version>
-        <org.springframework.version>4.0.5.RELEASE</org.springframework.version>
+        <org.springframework.version>5.2.24.RELEASE</org.springframework.version>
         <!-- persistence -->
         <hibernate.version>4.3.5.Final</hibernate.version>
         <mysql-connector-java.version>5.1.30</mysql-connector-java.version>
